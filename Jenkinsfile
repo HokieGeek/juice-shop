@@ -1,13 +1,11 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:11-alpine' 
-        }
-    }
+    agent any
     stages {
         stage('Install') { 
             steps {
-                sh 'npm install' 
+                nodejs(nodeJSInstallationName: 'Node 11.x') {
+                    sh 'npm install'
+                }
             }
         }
         stage('Nexus Lifecycle evaluation') { 
